@@ -16,7 +16,7 @@ public class charctermove : MonoBehaviour
     void Start()
     {
         characterController = GetComponent<CharacterController>(); // 캐릭터 컨트롤러에 플레이어의 캐릭터 컨트롤러를 넣는다(자동으로)
-        cameratrans = transform.GetChild(0); // 자식개체의 1번째에 있는 오브젝트의 트랜스폼을 가져옴(자동으로)a
+        cameratrans = transform.GetChild(0); // 자식개체의 1번째에 있는 오브젝트의 트랜스폼을 가져옴(자동으로)
     }
 
     void Update()
