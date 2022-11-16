@@ -4,16 +4,15 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Bullet
-  - Wall
+  - Ladder
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - PostProcessing
   - Water
   - UI
-  - 
+  - Hands
   - 
   - 
   - 
