@@ -7,7 +7,7 @@ public class AKM : MonoBehaviour
     public Transform cameraTransform;
     public GameObject bulletPrefab;
     public Transform firePosition;
-    public float firecur = 0.24f;
+    public float firecur = 0.12f;
     public float firecool = 0.5f;
 
     public float power = 25f;

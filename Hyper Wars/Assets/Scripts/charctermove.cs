@@ -10,6 +10,7 @@ public class charctermove : MonoBehaviour
     public float jumpspeed = 10f; // 점프 스피드
     public float gravity = -20f; // 중력
     public float yVelocity = 0; // Velocity(벨로시티)는 속도 라는 뜻
+    public bool ghost = false;
     public CharacterController characterController; // rigidbody(리지드바디)가 없어도 움직일수 있게 만들어준다.
 
 
@@ -35,6 +36,17 @@ public class charctermove : MonoBehaviour
             {
                 yVelocity = jumpspeed; // Y벨로시티에 점프 스피드를 넣는다.
             }
+        }
+
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            ghost = true;
+            movespeed = 3;
+        }
+        else
+        {
+            ghost = false;
+            movespeed = 5;
         }
 
         yVelocity += (gravity * Time.deltaTime); // Y벨로시티에서 중력(gravity)의 값을 뺌
