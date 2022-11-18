@@ -34,12 +34,6 @@ namespace EvolveGames
         bool isClimbing = false;
 
         [Space(20)]
-        [Header("HandsHide")]
-        [SerializeField] bool CanHideDistanceWall = true;
-        [SerializeField, Range(0.1f, 5)] float HideDistance = 1.5f;
-        [SerializeField] int LayerMaskInt = 1;
-
-        [Space(20)]
         [Header("Input")]
         [SerializeField] KeyCode CroughKey = KeyCode.LeftControl;
 
@@ -80,7 +74,6 @@ namespace EvolveGames
         void Update()
         {
             RaycastHit CroughCheck;
-            RaycastHit ObjectCheck;
 
             if (!characterController.isGrounded && !isClimbing)
             {
@@ -139,43 +132,6 @@ namespace EvolveGames
                     WalkingValue = Mathf.Lerp(WalkingValue, walkingSpeed, 4 * Time.deltaTime);
                 }
             }
-
-            if(WallDistance != Physics.Raycast(GetComponentInChildren<Camera>().transform.position, transform.TransformDirection(Vector3.forward), out ObjectCheck, HideDistance, LayerMaskInt) && CanHideDistanceWall)
-            {
-                WallDistance = Physics.Raycast(GetComponentInChildren<Camera>().transform.position, transform.TransformDirection(Vector3.forward), out ObjectCheck, HideDistance, LayerMaskInt);
-                Items.ani.SetBool("Hide", WallDistance);
-                Items.DefiniteHide = WallDistance;
-            }
         }
-
-        private void OnTriggerEnter(Collider other)
-        {
-            if (other.tag == "Ladder" && CanClimbing)
-            { 
-                CanRunning = false;
-                isClimbing = true;
-                WalkingValue /= 2;
-                Items.Hide(true);
-            }
-        }
-        private void OnTriggerStay(Collider other)
-        {
-            if (other.tag == "Ladder" && CanClimbing)
-            {
-                moveDirection = new Vector3(0, Input.GetAxis("Vertical") * Speed * (-Camera.localRotation.x / 1.7f), 0);
-            }
-        }
-        private void OnTriggerExit(Collider other)
-        {
-            if (other.tag == "Ladder" && CanClimbing)
-            {
-                CanRunning = true;
-                isClimbing = false;
-                WalkingValue *= 2;
-                Items.ani.SetBool("Hide", false);
-                Items.Hide(false);
-            }
-        }
-
     }
 }
