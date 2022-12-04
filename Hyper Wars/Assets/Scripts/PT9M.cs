@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PT9M : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class PT9M : MonoBehaviour
     public float firecool = 0.2f;
     public float power = 25f;
     public int ammo = 15;
+    public TextMeshProUGUI ammot;
 
     public Animator ani;
     // Start is called before the first frame update
@@ -30,12 +32,13 @@ public class PT9M : MonoBehaviour
             {
                 if (firecur >= firecool)
                 {
-                    ammo--;
                     GameObject bullet = Instantiate(bulletPrefab);
                     firecur = 0;
                     bullet.transform.position = firePosition.position; // 총알이 생성되는 지점을 fireposition에 위치로 정함
                     bullet.GetComponent<Rigidbody>().velocity = cameraTransform.forward * power; // 총알의 컴포넌트중에 리지드 바디 컴포넌트를 가져와 벨로시티에 앞으로 가는 힘을 넣음
                     StartCoroutine(FirePT9M());
+
+                    ammo--;
                     if (ammo <= 0)
                     {
                         ani.SetBool("Noammo_PT-9M", true);
@@ -45,6 +48,8 @@ public class PT9M : MonoBehaviour
             }
         }
 
+        ammot.GetComponent<TextMeshProUGUI>().text = ammo.ToString();
+
         if (Input.GetKeyDown(KeyCode.R))
         {
             StartCoroutine(ReloadPT9M());
@@ -53,6 +58,7 @@ public class PT9M : MonoBehaviour
 
     IEnumerator ReloadPT9M()
     {
+        Debug.Log("Reload!");
         ani.SetBool("Reload_PT-9M", true);
         yield return new WaitForSeconds(2.0f);
         ani.SetBool("Reload_PT-9M", false);
@@ -69,7 +75,7 @@ public class PT9M : MonoBehaviour
     IEnumerator FirePT9M()
     {
         ani.SetBool("Fire_PT-9M", true);
-        yield return new WaitForSeconds(0.2f);
+        yield return null;
         ani.SetBool("Fire_PT-9M", false);
     }
 }

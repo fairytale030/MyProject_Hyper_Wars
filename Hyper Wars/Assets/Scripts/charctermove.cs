@@ -17,6 +17,10 @@ public class charctermove : MonoBehaviour
     public float rotationX;
     public float rotationY;
 
+    public int HP = 100;
+    public int sarmor = 25;
+    public int barmor = 50;
+
 
     void Start()
     {
@@ -26,8 +30,8 @@ public class charctermove : MonoBehaviour
 
     void Update()
     {
-        float h = Input.GetAxis("Horizontal"); // 처음으로 엑시스라는 함수 사용 // 호리즌탈(가로)의 방향을 받음
-        float v = Input.GetAxis("Vertical"); // 처음으로 엑시스라는 함수 사용 // 버티칼(세로)의 방향을 받음
+        float h = Input.GetAxis("Horizontal"); // 호리즌탈(가로)의 방향을 받음
+        float v = Input.GetAxis("Vertical"); // 버티칼(세로)의 방향을 받음
 
         Vector3 moveDirection = new Vector3(h, 0, v); // 무브 디렉션이라는 이름의 벡터3를 선언해 움직일 방향을 맞춤
         moveDirection = cameratrans.TransformDirection(moveDirection);
